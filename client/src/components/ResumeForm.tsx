@@ -82,26 +82,26 @@ export function ResumeForm({ initialData, onChange, isSaving }: ResumeFormProps)
 
   return (
     <Form {...form}>
-      <form className="space-y-6 pb-20">
-        <Accordion type="multiple" defaultValue={["personal", "experience"]} className="space-y-4">
+      <form className="space-y-4 sm:space-y-6 pb-12 sm:pb-16 md:pb-20">
+        <Accordion type="multiple" defaultValue={["personal", "experience"]} className="space-y-3 sm:space-y-4">
           
           {/* PERSONAL INFO */}
-          <AccordionItem value="personal" className="border rounded-xl bg-white shadow-sm px-4">
-            <AccordionTrigger className="hover:no-underline py-4">
-              <span className="text-lg font-semibold flex items-center gap-2">
-                <span className="w-2 h-8 bg-primary rounded-full"></span>
-                Personal Information
+          <AccordionItem value="personal" className="border rounded-xl bg-white shadow-sm px-3 sm:px-4">
+            <AccordionTrigger className="hover:no-underline py-3 sm:py-4">
+              <span className="text-base sm:text-lg font-semibold flex items-center gap-1.5 sm:gap-2">
+                <span className="w-1.5 sm:w-2 h-6 sm:h-8 bg-primary rounded-full"></span>
+                <span className="text-sm sm:text-base md:text-lg">Personal Information</span>
               </span>
             </AccordionTrigger>
-            <AccordionContent className="pt-2 pb-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <AccordionContent className="pt-2 pb-4 sm:pb-6 space-y-3 sm:space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <FormField
                   control={form.control}
                   name="personalInfo.fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl><Input {...field} placeholder="e.g. Jane Doe" /></FormControl>
+                      <FormLabel className="text-xs sm:text-sm">Full Name</FormLabel>
+                      <FormControl><Input {...field} placeholder="e.g. Jane Doe" className="h-9 sm:h-10 text-sm" /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -111,22 +111,22 @@ export function ResumeForm({ initialData, onChange, isSaving }: ResumeFormProps)
                   name="personalInfo.title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Job Title</FormLabel>
-                      <FormControl><Input {...field} placeholder="e.g. Senior Software Engineer" /></FormControl>
+                      <FormLabel className="text-xs sm:text-sm">Job Title</FormLabel>
+                      <FormControl><Input {...field} placeholder="e.g. Senior Software Engineer" className="h-9 sm:h-10 text-sm" /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <FormField
                   control={form.control}
                   name="personalInfo.email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl><Input {...field} placeholder="jane@example.com" /></FormControl>
+                      <FormLabel className="text-xs sm:text-sm">Email</FormLabel>
+                      <FormControl><Input {...field} placeholder="jane@example.com" className="h-9 sm:h-10 text-sm" /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -136,8 +136,8 @@ export function ResumeForm({ initialData, onChange, isSaving }: ResumeFormProps)
                   name="personalInfo.phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone</FormLabel>
-                      <FormControl><Input {...field} placeholder="+1 234 567 890" /></FormControl>
+                      <FormLabel className="text-xs sm:text-sm">Phone</FormLabel>
+                      <FormControl><Input {...field} placeholder="+1 234 567 890" className="h-9 sm:h-10 text-sm" /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -180,13 +180,13 @@ export function ResumeForm({ initialData, onChange, isSaving }: ResumeFormProps)
                   name="personalInfo.summary"
                   render={({ field }) => (
                     <FormItem>
-                      <div className="flex justify-between items-center">
-                        <FormLabel>Professional Summary</FormLabel>
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
+                        <FormLabel className="text-xs sm:text-sm">Professional Summary</FormLabel>
                         <Button 
                           type="button" 
                           variant="ghost" 
                           size="sm" 
-                          className="text-primary h-8 gap-1 hover:text-primary hover:bg-primary/10"
+                          className="text-primary h-7 sm:h-8 gap-1 hover:text-primary hover:bg-primary/10 text-xs sm:text-sm px-2 sm:px-3 self-start sm:self-auto"
                           onClick={() => generateSummaryMutation.mutate({
                             currentRole: form.getValues("personalInfo.title") || "",
                             experience: form.getValues("workExperience")?.map(w => `${w.position} at ${w.company}`) || [],
@@ -194,15 +194,16 @@ export function ResumeForm({ initialData, onChange, isSaving }: ResumeFormProps)
                           })}
                           disabled={generateSummaryMutation.isPending}
                         >
-                          {generateSummaryMutation.isPending ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-                          AI Generate
+                          {generateSummaryMutation.iPending ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                          <span className="hidden xs:inline">AI Generate</span>
+                          <span className="xs:hidden">AI</span>
                         </Button>
                       </div>
                       <FormControl>
                         <Textarea 
                           {...field} 
                           placeholder="Brief overview of your professional background..." 
-                          className="min-h-[120px]"
+                          className="min-h-[80px] sm:min-h-[100px] md:min-h-[120px] text-sm resize-none"
                         />
                       </FormControl>
                       <FormMessage />
@@ -214,10 +215,10 @@ export function ResumeForm({ initialData, onChange, isSaving }: ResumeFormProps)
           </AccordionItem>
 
           {/* EXPERIENCE */}
-          <AccordionItem value="experience" className="border rounded-xl bg-white shadow-sm px-4">
-            <AccordionTrigger className="hover:no-underline py-4">
-              <span className="text-lg font-semibold flex items-center gap-2">
-                <span className="w-2 h-8 bg-blue-400 rounded-full"></span>
+          <AccordionItem value="experience" className="border rounded-xl bg-white shadow-sm px-3 sm:px-4">
+            <AccordionTrigger className="hover:no-underline py-3 sm:py-4">
+              <span className="text-base sm:text-lg font-semibold flex items-center gap-1.5 sm:gap-2">
+                <span className="w-1.5 sm:w-2 h-6 sm:h-8 bg-blue-400 rounded-full"></span>
                 Experience
               </span>
             </AccordionTrigger>

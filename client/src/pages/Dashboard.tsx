@@ -144,7 +144,7 @@ export default function Dashboard() {
         onConfirm={handleNameConfirm}
       />
 
-      <header className="bg-gradient-to-r from-white via-blue-50/30 to-white border-b sticky top-0 z-10 shadow-sm backdrop-blur-sm relative">
+      <header className="bg-gradient-to-r from-white via-blue-50/30 to-white border-b sticky top-0 z-30 shadow-sm backdrop-blur-sm relative">
         <div
           className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between"
         >
@@ -174,7 +174,7 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12 relative z-10">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12 relative">
         <div className="mb-6 sm:mb-8 md:mb-10">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-1 sm:mb-2">My Resumes</h1>
           <p className="text-xs sm:text-sm md:text-base text-slate-600 flex items-center gap-1.5 sm:gap-2">
@@ -190,12 +190,12 @@ export default function Dashboard() {
                 key={resume.id}
                 className="h-full resume-card"
               >
-                <Card className="group hover:shadow-2xl hover:-translate-y-1 active:scale-98 transition-all duration-300 border-slate-200 hover:border-blue-200 overflow-hidden cursor-pointer h-full flex flex-col bg-white relative touch-manipulation">
+                <Card className="group hover:shadow-2xl hover:-translate-y-1 active:scale-98 transition-all duration-300 border-slate-200 hover:border-blue-200 overflow-hidden cursor-pointer h-full flex flex-col bg-white relative touch-manipulation z-10">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-50/0 group-hover:from-blue-50/50 group-hover:to-transparent transition-all duration-300 pointer-events-none"></div>
                   <Link href={`/editor/${resume.id}`} className="relative z-10">
                     <div className="aspect-[210/297] bg-slate-50 relative border-b overflow-hidden">
                       {/* Actual Template Preview - Scaled down to fit */}
-                      <div className="dashboard-preview-container">
+                      <div className="dashboard-preview-container relative z-0">
                         <div className="dashboard-preview-wrapper">
                           {resume.templateId === "modern" ? (
                             <ModernTemplate 
@@ -212,7 +212,7 @@ export default function Dashboard() {
                       </div>
                       
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-5" />
                     </div>
                   </Link>
                 
@@ -269,7 +269,7 @@ export default function Dashboard() {
             <button
               onClick={() => setShowTemplateDialog(true)}
               disabled={createResumeMutation.isPending}
-              className="create-card flex flex-col items-center justify-center border-2 border-dashed border-slate-300 rounded-xl bg-gradient-to-br from-white to-blue-50/30 hover:from-blue-50/50 hover:to-blue-100/50 active:from-blue-100/60 active:to-blue-100/70 hover:border-blue-400 hover:shadow-xl active:scale-98 transition-all duration-300 aspect-[210/297] gap-3 sm:gap-4 group text-slate-500 hover:text-blue-600 relative overflow-hidden touch-manipulation"
+              className="create-card flex flex-col items-center justify-center border-2 border-dashed border-slate-300 rounded-xl bg-gradient-to-br from-white to-blue-50/30 hover:from-blue-50/50 hover:to-blue-100/50 active:from-blue-100/60 active:to-blue-100/70 hover:border-blue-400 hover:shadow-xl active:scale-98 transition-all duration-300 aspect-[210/297] gap-3 sm:gap-4 group text-slate-500 hover:text-blue-600 relative overflow-hidden touch-manipulation z-10"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100/0 via-blue-50/0 to-blue-100/0 group-hover:from-blue-100/30 group-hover:via-blue-50/20 group-hover:to-blue-100/30 transition-all duration-500"></div>
               <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-slate-100 to-blue-100 flex items-center justify-center group-hover:from-blue-600 group-hover:to-blue-700 group-hover:scale-110 active:scale-105 transition-all duration-300 shadow-lg relative z-10">

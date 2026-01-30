@@ -197,20 +197,44 @@
 }
 
 /* Custom Scrollbar for the editor panel */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 10px;
+.custom-scrollbar {
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-behavior: smooth;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
 .custom-scrollbar::-webkit-scrollbar-track {
   background: rgba(2, 8, 23, 0.02);
-  border-radius: 10px;
+  border-radius: 6px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #cbd5e1, #94a3b8);
-  border-radius: 10px;
+  border-radius: 6px;
   transition: background 0.3s ease;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #3b82f6, #2563eb);
+}
+
+/* Mobile scrollbar optimization */
+@media (max-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:active {
+    background: #94a3b8;
+  }
 }
 
 /* Global scrollbar styling */
@@ -478,4 +502,87 @@ input:focus, textarea:focus, select:focus {
 .print-container .resume-paper {
   overflow: visible !important;
   height: auto !important;
+}
+
+/* Z-Index Layer System */
+.z-overlay {
+  z-index: 50;
+}
+
+.z-header {
+  z-index: 30;
+}
+
+.z-modal {
+  z-index: 40;
+}
+
+.z-card {
+  z-index: 10;
+}
+
+.z-card-hover {
+  z-index: 15;
+}
+
+.z-5 {
+  z-index: 5;
+}
+
+/* Scroll-safe positioning for cards */
+.resume-card {
+  isolation: isolate;
+}
+
+.create-card {
+  isolation: isolate;
+}
+
+/* Mobile Responsive Improvements */
+@media (max-width: 640px) {
+  /* Mobile-first touch targets */
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-optimized scrolling */
+  .custom-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile-safe z-indexing */
+  .mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  
+  /* Mobile form improvements */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Mobile viewport fixes */
+  .mobile-viewport {
+    height: 100dvh;
+    height: 100vh;
+  }
+}
+
+/* Improve mobile textarea and input responsiveness */
+@media (max-width: 768px) {
+  .resume-form input {
+    font-size: 14px;
+  }
+  
+  .resume-form textarea {
+    font-size: 14px;
+    min-height: 80px;
+  }
+  
+  .resume-form .form-label {
+    font-size: 12px;
+    font-weight: 500;
+  }
 }

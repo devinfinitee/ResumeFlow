@@ -195,52 +195,52 @@ export default function Editor() {
       
       {/* HEADER */}
       <header
-        className="h-14 sm:h-16 bg-gradient-to-r from-white via-blue-50/30 to-white border-b flex items-center justify-between px-2 sm:px-3 md:px-6 shrink-0 no-print z-20 shadow-sm backdrop-blur-sm relative"
+        className="h-12 sm:h-14 md:h-16 bg-gradient-to-r from-white via-blue-50/30 to-white border-b flex items-center justify-between px-2 sm:px-3 md:px-6 shrink-0 no-print z-30 shadow-sm backdrop-blur-sm relative"
       >
         <div className="flex items-center gap-1 sm:gap-2 md:gap-4 flex-1 min-w-0">
           <Button 
             variant="ghost" 
             size="icon" 
             onClick={() => setLocation("/")} 
-            className="text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 h-8 w-8 sm:h-9 sm:w-9 shrink-0 active:scale-95"
+            className="text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 shrink-0 active:scale-95"
           >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+            <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
           </Button>
-          <div className="hidden sm:block h-6 w-px bg-slate-200 mx-1 md:mx-2" />
+          <div className="hidden sm:block h-5 sm:h-6 w-px bg-slate-200 mx-1 md:mx-2" />
           <Input 
             value={title} 
             onChange={(e) => setTitle(e.target.value)} 
-            className="border-none shadow-none text-sm sm:text-base md:text-lg font-bold bg-transparent focus-visible:ring-0 px-0 min-w-0 flex-1 focus:text-blue-700 transition-colors"
+            className="border-none shadow-none text-xs sm:text-sm md:text-base lg:text-lg font-bold bg-transparent focus-visible:ring-0 px-1 sm:px-0 min-w-0 flex-1 focus:text-blue-700 transition-colors h-8 sm:h-auto"
             placeholder="Resume Title"
           />
         </div>
 
-        <div className="flex items-center gap-1 sm:gap-2 md:gap-4 shrink-0">
+        <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2 lg:gap-4 shrink-0">
           <div
-            className="hidden lg:flex text-xs font-medium items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-300"
+            className="hidden md:flex text-xs font-medium items-center gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all duration-300"
             style={{
               color: isSaving ? '#3b82f6' : '#10b981',
               backgroundColor: isSaving ? 'rgba(59, 130, 246, 0.1)' : 'rgba(16, 185, 129, 0.1)',
             }}
           >
             {isSaving ? (
-               <><Loader2 className="w-3 h-3 animate-spin" /> Saving...</>
+               <><Loader2 className="w-3 h-3 animate-spin" /> <span className="hidden lg:inline">Saving...</span></>
             ) : (
-               <><Save className="w-3 h-3" /> Saved</>
+               <><Save className="w-3 h-3" /> <span className="hidden lg:inline">Saved</span></>
             )}
           </div>
-          <div className="hidden lg:block h-6 w-px bg-slate-200 mx-2" />
+          <div className="hidden md:block h-5 sm:h-6 w-px bg-slate-200 mx-1 sm:mx-2" />
           
           {/* Template Switcher */}
-          <Tabs value={template} onValueChange={setTemplate} className="w-[120px] sm:w-[160px] md:w-[200px]">
-            <TabsList className="grid w-full grid-cols-2 h-8 sm:h-9">
-              <TabsTrigger value="modern" className="text-[10px] sm:text-xs">
-                <span className="hidden sm:inline">Template 1</span>
-                <span className="sm:hidden">T1</span>
+          <Tabs value={template} onValueChange={setTemplate} className="w-[80px] sm:w-[120px] md:w-[160px] lg:w-[200px]">
+            <TabsList className="grid w-full grid-cols-2 h-7 sm:h-8 md:h-9 text-[9px] sm:text-[10px] md:text-xs">
+              <TabsTrigger value="modern" className="px-1 sm:px-2">
+                <span className="hidden md:inline">Template 1</span>
+                <span className="md:hidden">T1</span>
               </TabsTrigger>
-              <TabsTrigger value="minimal" className="text-[10px] sm:text-xs">
-                <span className="hidden sm:inline">Template 2</span>
-                <span className="sm:hidden">T2</span>
+              <TabsTrigger value="minimal" className="px-1 sm:px-2">
+                <span className="hidden md:inline">Template 2</span>
+                <span className="md:hidden">T2</span>
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -248,9 +248,9 @@ export default function Editor() {
           <div>
             <Button 
               onClick={handlePrint} 
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 gap-1.5 sm:gap-2 text-xs sm:text-sm px-2 sm:px-3 md:px-4 h-8 sm:h-10 transition-all duration-300 active:scale-95 sm:hover:scale-105"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 gap-1 sm:gap-1.5 md:gap-2 text-[10px] sm:text-xs md:text-sm px-1.5 sm:px-2 md:px-3 lg:px-4 h-7 sm:h-8 md:h-9 lg:h-10 transition-all duration-300 active:scale-95 sm:hover:scale-105"
             >
-              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> 
+              <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" /> 
               <span className="hidden xs:inline">PDF</span>
             </Button>
           </div>
@@ -258,24 +258,24 @@ export default function Editor() {
       </header>
 
       {/* EDITOR WORKSPACE */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative z-10">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
         
         {/* LEFT PANEL: FORM EDITOR */}
         <div
-          className="w-full lg:w-1/2 lg:max-w-[600px] border-b lg:border-b-0 lg:border-r bg-gradient-to-br from-slate-50 to-blue-50/20 no-print flex flex-col h-[45vh] lg:h-full"
+          className="w-full lg:w-1/2 lg:max-w-[600px] border-b lg:border-b-0 lg:border-r bg-gradient-to-br from-slate-50 to-blue-50/20 no-print flex flex-col h-[50vh] sm:h-[55vh] md:h-[60vh] lg:h-full"
         >
           <div className="flex-1 overflow-y-auto custom-scrollbar">
-            <div className="p-3 sm:p-4 md:p-6 pb-16 sm:pb-20 md:pb-24">
-               <div className="mb-4 sm:mb-6 md:mb-8">
-                 <h2 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Editor</h2>
-                 <p className="text-slate-600 text-[10px] sm:text-xs md:text-sm flex items-center gap-1.5 sm:gap-2 mt-1">
-                   <span className="w-1 h-1 rounded-full bg-blue-500"></span>
+            <div className="p-2 sm:p-3 md:p-4 lg:p-6 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
+               <div className="mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+                 <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Editor</h2>
+                 <p className="text-slate-600 text-[9px] sm:text-[10px] md:text-xs lg:text-sm flex items-center gap-1 sm:gap-1.5 md:gap-2 mt-0.5 sm:mt-1">
+                   <span className="w-0.5 sm:w-1 h-0.5 sm:h-1 rounded-full bg-blue-500"></span>
                    Update your information below
                  </p>
                </div>
 
                {/* Accent Color Picker */}
-               <div className="mb-6 md:mb-8 pb-4 md:pb-6 border-b">
+               <div className="mb-4 sm:mb-6 md:mb-8 pb-3 sm:pb-4 md:pb-6 border-b">
                  <ColorPicker
                    value={accentColor}
                    onChange={setAccentColor}
@@ -294,10 +294,10 @@ export default function Editor() {
         </div>
 
         {/* RIGHT PANEL: LIVE PREVIEW */}
-        <div className="flex-1 bg-slate-200/50 overflow-hidden print:p-0 print:bg-white h-[50vh] md:h-full">
+        <div className="flex-1 bg-slate-200/50 overflow-hidden print:p-0 print:bg-white h-[40vh] sm:h-[35vh] md:h-[30vh] lg:h-full">
           <div className="w-full h-full overflow-y-auto overflow-x-hidden custom-scrollbar print:overflow-visible">
-            <div className="min-h-full w-full flex items-start justify-center p-4 md:p-6 lg:p-8 print:p-0">
-              <div ref={componentRef} className="w-full max-w-[210mm]">
+            <div className="min-h-full w-full flex items-start justify-center p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8 print:p-0">
+              <div ref={componentRef} className="w-full max-w-[210mm] transform-gpu">
                 {template === "modern" ? (
                   <ModernTemplate content={content} accentColor={accentColor} />
                 ) : (
